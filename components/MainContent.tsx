@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useRef } from 'react';
 import { Certification } from '../types';
 
@@ -18,8 +16,6 @@ const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInVi
     }
     
     const callback = (entries: IntersectionObserverEntry[]) => {
-      // Find the last intersecting entry. This helps when scrolling up,
-      // ensuring the correct section is highlighted.
       const intersectingEntries = entries.filter(e => e.isIntersecting);
       if (intersectingEntries.length > 0) {
         onTocEntryInView(intersectingEntries[intersectingEntries.length - 1].target.id);
@@ -43,19 +39,19 @@ const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInVi
 
   if (!certification) {
     return (
-      <main className="flex-1 p-6 md:p-10 bg-gray-100 flex items-center justify-center">
+      <div className="p-6 md:p-10 flex items-center justify-center h-full">
         <div className="text-center">
             <h2 className="text-[1.4rem] font-semibold text-gray-700">Select a Learning Module</h2>
             <p className="mt-2 text-gray-500 text-[1.0rem]">
                 Please select a certification from the sidebar to view its learning module.
             </p>
         </div>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="flex-1 p-6 md:p-10 bg-gray-100 overflow-y-auto">
+    <div className="p-6 md:p-10">
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-wrap gap-2 mb-4">
           <span className="inline-block bg-indigo-100 text-indigo-800 text-[1.0rem] font-medium px-2.5 py-0.5 rounded-full">
@@ -72,8 +68,6 @@ const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInVi
             <section key={section.id}>
               <h2 
                 id={section.id}
-                // Fix: ref callbacks should not return a value. `Map.prototype.set()` returns the map itself.
-                // Wrap in braces to ensure an implicit `undefined` return.
                 ref={el => { sectionRefs.current.set(section.id, el) }}
                 className="text-[1.4rem] font-semibold text-gray-800 mb-3 scroll-mt-20"
               >
@@ -86,7 +80,7 @@ const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInVi
           ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
