@@ -33,7 +33,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ certification, active
       
       {certification && certification.content && certification.content.length > 0 && (
         <div className="border-t pt-4 mt-4">
-          <h3 className="text-[1.4rem] font-semibold text-gray-800 mb-4">On this page</h3>
+          <h3 className="text-[1.0rem] font-semibold text-gray-800 mb-4">On this page</h3>
           <nav>
             <ul className="space-y-2">
               {certification.content.map((section) => (
