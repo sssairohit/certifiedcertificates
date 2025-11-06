@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import TableOfContents from './components/TableOfContents';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
   const [selectedCertification, setSelectedCertification] = useState<Certification | null>(CERTIFICATIONS[0] ?? null);
@@ -104,6 +105,7 @@ const App: React.FC = () => {
           onSearchChange={setSearchTerm}
         />
       </div>
+      <Footer />
     </div>
   );
 };
