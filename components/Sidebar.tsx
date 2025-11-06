@@ -60,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ groupedCertifications, selectedCertif
               <button
                 onClick={() => setGroupBy('organization')}
                 aria-pressed={groupBy === 'organization'}
-                className={`text-[1.0rem] font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950 rounded-sm ${
+                className={`text-[1.0rem] font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950 ${
                   groupBy === 'organization'
                     ? 'text-indigo-600 dark:text-indigo-400 underline'
                     : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline'
@@ -72,7 +72,7 @@ const Sidebar: React.FC<SidebarProps> = ({ groupedCertifications, selectedCertif
               <button
                 onClick={() => setGroupBy('domain')}
                 aria-pressed={groupBy === 'domain'}
-                className={`text-[1.0rem] font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950 rounded-sm ${
+                className={`text-[1.0rem] font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950 ${
                   groupBy === 'domain'
                     ? 'text-indigo-600 dark:text-indigo-400 underline'
                     : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline'
@@ -86,7 +86,7 @@ const Sidebar: React.FC<SidebarProps> = ({ groupedCertifications, selectedCertif
               <button
                 onClick={toggleAllGroups}
                 aria-expanded={areAllGroupsOpen}
-                className="text-[1.0rem] font-medium text-indigo-600 dark:text-indigo-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950 rounded-sm"
+                className="text-[1.0rem] font-medium text-indigo-600 dark:text-indigo-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950"
               >
                 {areAllGroupsOpen ? 'Collapse All' : 'Expand All'}
               </button>
@@ -100,7 +100,7 @@ const Sidebar: React.FC<SidebarProps> = ({ groupedCertifications, selectedCertif
                 onClick={() => toggleGroup(group)}
                 aria-expanded={openGroups.has(group)}
                 aria-controls={createSafeId(group)}
-                className="w-full flex justify-between items-center text-left px-2 py-1.5 rounded-md text-[1.0rem] font-semibold text-gray-600 hover:bg-gray-200 transition-colors dark:text-gray-400 dark:hover:bg-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950"
+                className="w-full flex justify-between items-center text-left px-2 py-1.5 text-[1.0rem] font-semibold text-gray-600 hover:bg-gray-200 transition-colors dark:text-gray-400 dark:hover:bg-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950"
               >
                 <span className="capitalize">{group}</span>
                 <svg
@@ -116,12 +116,13 @@ const Sidebar: React.FC<SidebarProps> = ({ groupedCertifications, selectedCertif
               </button>
               {openGroups.has(group) && (
                 <ul id={createSafeId(group)} className="pl-2 mt-1 border-l-2 border-gray-200 dark:border-gray-700">
-                  {certifications.sort((a, b) => a.title.localeCompare(b.title)).map(cert => (
+                  {/* FIX: Cast certifications to Certification[] and create a copy before sorting to avoid mutation. */}
+                  {[...(certifications as Certification[])].sort((a, b) => a.title.localeCompare(b.title)).map(cert => (
                     <li key={cert.id}>
                       <button
                         onClick={() => onSelectCertification(cert)}
                         aria-current={selectedCertificationId === cert.id ? 'true' : undefined}
-                        className={`w-full text-left pl-3 pr-1 py-1.5 rounded-r-md text-[1.0rem] transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950 ${
+                        className={`w-full text-left pl-3 pr-1 py-1.5 text-[1.0rem] transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950 ${
                           selectedCertificationId === cert.id
                             ? 'bg-indigo-100 text-indigo-700 font-semibold dark:bg-indigo-900/50 dark:text-indigo-300'
                             : 'text-gray-600 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100'

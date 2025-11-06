@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ globalSearchTerm, onGlobalSearchChange,
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-950"
+              className="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-950"
             >
               {theme === 'light' 
                 ? <i data-feather="moon" className="w-5 h-5"></i> 
@@ -46,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({ globalSearchTerm, onGlobalSearchChange,
                 id="global-search"
                 value={globalSearchTerm}
                 onChange={(e) => onGlobalSearchChange(e.target.value)}
-                className="block w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-[1.2rem] dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400"
+                className="block w-full pl-9 pr-3 py-2 border border-gray-300 leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-[1.2rem] dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400"
                 placeholder="Global Search"
               />
             </div>
