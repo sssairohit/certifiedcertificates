@@ -9,6 +9,16 @@ interface TableOfContentsProps {
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({ certification, activeTocId, searchTerm, onSearchChange }) => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Update URL hash for better UX and accessibility
+      window.history.pushState(null, '', `#${id}`);
+    }
+  };
+
   return (
     <aside className="hidden lg:block w-[292px] bg-gray-50 border-l border-gray-200 p-4 overflow-y-auto dark:bg-gray-950 dark:border-gray-800">
       <div className="mb-4">
@@ -40,6 +50,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ certification, active
                 <li key={section.id}>
                   <a
                     href={`#${section.id}`}
+                    onClick={(e) => handleLinkClick(e, section.id)}
                     aria-current={activeTocId === section.id ? 'location' : undefined}
                     className={`block text-[1.0rem] transition-colors duration-200 ease-in-out border-l-2 pl-3 focus:outline-none rounded-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950 ${
                       activeTocId === section.id
