@@ -138,6 +138,7 @@ const App: React.FC = () => {
             <MainContent 
               certification={selectedCertification} 
               onTocEntryInView={handleTocEntryInView}
+              activeTocId={activeTocId}
             />
         </main>
         <TableOfContents 

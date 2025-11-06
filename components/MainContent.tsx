@@ -1,15 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'https://esm.sh/react-markdown@9';
 import { Certification } from '../types';
 
 interface MainContentProps {
   certification: Certification | null;
   onTocEntryInView: (id: string | null) => void;
+  activeTocId: string | null;
 }
 
-const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInView }) => {
+const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInView, activeTocId }) => {
   const sectionRefs = useRef<Map<string, HTMLHeadingElement | null>>(new Map());
   const observer = useRef<IntersectionObserver | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (observer.current) {
@@ -38,6 +40,13 @@ const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInVi
     };
   }, [certification, onTocEntryInView]);
 
+  useEffect(() => {
+    if (certification && (window as any).feather) {
+      (window as any).feather.replace();
+    }
+  }, [certification]);
+
+
   if (!certification) {
     return (
       <div className="p-6 md:p-10 flex items-center justify-center h-full">
@@ -51,6 +60,17 @@ const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInVi
     );
   }
 
+  const handleShare = () => {
+    const baseUrl = window.location.href.split('#')[0];
+    const shareUrl = activeTocId ? `${baseUrl}#${activeTocId}` : baseUrl;
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(err => {
+      console.error('Failed to copy URL: ', err);
+    });
+  };
+
   return (
     <div className="p-6 md:p-10">
       <div className="max-w-4xl mx-auto">
@@ -62,7 +82,25 @@ const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInVi
             {certification.domain}
           </span>
         </div>
-        <h1 className="text-[1.4rem] font-bold text-gray-900 mb-6 border-b pb-4 dark:text-gray-100 dark:border-gray-700">{certification.title}</h1>
+        
+        <div className="flex justify-between items-start gap-4 mb-6 border-b pb-4 dark:border-gray-700">
+          <h1 className="text-[1.4rem] font-bold text-gray-900 dark:text-gray-100">{certification.title}</h1>
+          <div className="relative flex-shrink-0">
+            <button 
+              onClick={handleShare}
+              className="flex items-center gap-2 px-3 py-1.5 text-gray-600 border border-gray-300 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:text-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-offset-gray-950 transition-colors"
+              aria-label="Copy link to this section"
+            >
+              <i data-feather="share-2" className="w-4 h-4"></i>
+              <span className="text-[1.0rem] font-medium">Share</span>
+            </button>
+            {copied && (
+              <span className="absolute -top-9 right-0 bg-gray-800 text-white text-[0.9rem] px-2 py-1 rounded-none shadow-lg transition-opacity duration-300 animate-pulse">
+                Link copied!
+              </span>
+            )}
+          </div>
+        </div>
         
         <div className="space-y-8">
           {certification.content.map((section) => (
