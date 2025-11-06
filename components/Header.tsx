@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ globalSearchTerm, onGlobalSearchChange 
       <div className="w-full mx-auto">
         <div className="flex justify-between items-center py-4">
           {/* Left spacer to align with the left sidebar */}
-          <div className="w-[324px] flex-shrink-0"></div>
+          <div className="w-[292px] flex-shrink-0"></div>
           
           {/* Centered title, with padding to keep it from the edges */}
           <div className="flex-1 text-center px-4 sm:px-6 lg:px-8">
@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ globalSearchTerm, onGlobalSearchChange 
           </div>
           
           {/* Right container for search bar, aligns with the right sidebar. Added px-4 to match sidebar padding. */}
-          <div className="w-[324px] flex-shrink-0 px-4">
+          <div className="w-[292px] flex-shrink-0 px-4">
             <label htmlFor="global-search" className="sr-only">Global Search</label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
