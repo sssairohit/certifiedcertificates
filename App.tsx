@@ -6,12 +6,51 @@ import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import TableOfContents from './components/TableOfContents';
 
+declare const feather: any;
+
 const App: React.FC = () => {
   const [selectedCertification, setSelectedCertification] = useState<Certification | null>(CERTIFICATIONS[0] ?? null);
   const [activeTocId, setActiveTocId] = useState<string | null>(null);
   const [groupBy, setGroupBy] = useState<GroupByOption>('organization');
   const [searchTerm, setSearchTerm] = useState('');
   const [globalSearchTerm, setGlobalSearchTerm] = useState('');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const savedTheme = localStorage.getItem('theme');
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return (savedTheme === 'dark' || (!savedTheme && userPrefersDark)) ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    // Feather icons need to be re-initialized on initial load and when the theme changes.
+    // A small timeout ensures React has finished its DOM updates.
+    const timer = setTimeout(() => {
+        try {
+            if (typeof feather !== 'undefined' && feather) {
+                feather.replace({
+                  width: '1.4rem',
+                  height: '1.4rem'
+                });
+            }
+        } catch (e) {
+            console.error('Feather icons could not be replaced.', e);
+        }
+    }, 1);
+    
+    return () => clearTimeout(timer);
+  }, [theme]); // Only re-run when theme changes
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+  };
 
   const handleSelectCertification = useCallback((certification: Certification) => {
     setSelectedCertification(certification);
@@ -58,10 +97,12 @@ const App: React.FC = () => {
 
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen bg-white dark:bg-gray-950">
       <Header 
         globalSearchTerm={globalSearchTerm}
         onGlobalSearchChange={setGlobalSearchTerm}
+        theme={theme}
+        toggleTheme={toggleTheme}
       />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar
@@ -71,7 +112,7 @@ const App: React.FC = () => {
           groupBy={groupBy}
           setGroupBy={setGroupBy}
         />
-        <main className="flex-1 overflow-y-auto bg-gray-100">
+        <main className="flex-1 overflow-y-auto bg-gray-100 dark:bg-gray-900">
             <MainContent 
               certification={selectedCertification} 
               onTocEntryInView={handleTocEntryInView}
