@@ -59,6 +59,24 @@ It validates a candidate's ability to:
 *   **Elastic Compute Cloud (EC2):** We will explore advanced EC2 concepts such as placement groups, instance types optimization, Spot Instances for cost savings, and Auto Scaling for high availability and dynamic scaling.
 *   **Simple Storage Service (S3):** This section covers advanced S3 features, including storage classes (e.g., Intelligent-Tiering, Glacier Deep Archive), lifecycle policies, replication for disaster recovery, and securing data with bucket policies and access points.`
       },
+      {
+        id: 'chapter-2-architecture',
+        title: 'Chapter 2: Advanced Architecture & Scalability',
+        content: `Building upon the core services, this chapter explores how to combine them into complex, resilient, and scalable architectures. We will focus on designing for high availability, fault tolerance, and hybrid connectivity.
+
+**Key Topics Covered:**
+*   **Advanced Networking & Hybrid Environments:** This section is critical for connecting on-premises data centers with the AWS cloud.
+    *   **AWS Direct Connect vs. Site-to-Site VPN:** Understanding the use cases, performance, and cost implications of dedicated private connections versus encrypted tunnels over the internet.
+    *   **AWS Transit Gateway:** Designing a hub-and-spoke network topology to simplify connectivity and management between multiple VPCs and on-premises networks.
+    *   **Amazon Route 53:** Advanced DNS management, including routing policies (e.g., latency-based, geolocation, weighted) for global traffic distribution and high availability.
+*   **Designing for Scalability & High Availability:** Learn how to build systems that can handle dynamic traffic loads and recover gracefully from failures.
+    *   **Elastic Load Balancing (ELB):** Deep dive into Application Load Balancers (ALB), Network Load Balancers (NLB), and Gateway Load Balancers (GWLB), and their specific use cases for distributing traffic.
+    *   **Advanced Auto Scaling:** Implementing dynamic and predictive scaling policies to automatically adjust compute capacity based on demand, optimizing for both performance and cost.
+    *   **Containerization (ECS & EKS):** Introduction to Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS) for deploying, managing, and scaling containerized applications.
+*   **Database Solutions at Scale:** Selecting the right database service is crucial for application performance and scalability.
+    *   **Relational vs. NoSQL:** Comparing Amazon RDS (and its high-availability features) and Amazon Aurora (for performance) with Amazon DynamoDB (for scalable, low-latency NoSQL).
+    *   **In-Memory Caching:** Using Amazon ElastiCache (Redis or Memcached) to reduce database load and improve application response times.`
+      },
        {
         id: 'exam-format',
         title: 'Exam Format & Details (for both)',
@@ -235,12 +253,12 @@ It validates a candidate's ability to:
       },
       {
         id: 'az-305',
-        title: 'AZ-305: Solutions Architect',
+        title: 'Solutions Architect',
         content: 'Focuses on designing identity, governance, data storage, business continuity, and infrastructure solutions. It tests your ability to advise stakeholders and translate business requirements into secure, scalable, and reliable cloud solutions.',
       },
       {
         id: 'sc-100',
-        title: 'SC-100: Cybersecurity Architect',
+        title: 'Cybersecurity Architect',
         content: 'Focuses on designing a Zero Trust strategy and architecture, evaluating Governance Risk Compliance (GRC), and designing security for infrastructure and applications.',
       }
     ]
