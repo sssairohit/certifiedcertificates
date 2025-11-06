@@ -54,10 +54,10 @@ const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInVi
     <div className="p-6 md:p-10">
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-wrap gap-2 mb-4">
-          <span className="inline-block bg-indigo-100 text-indigo-800 text-[1.0rem] font-medium px-2.5 py-0.5 dark:bg-indigo-900/70 dark:text-indigo-300">
+          <span className="inline-block bg-indigo-100 text-indigo-800 text-[1.0rem] font-medium px-2.5 py-0.5 rounded-none dark:bg-indigo-900/70 dark:text-indigo-300">
             {certification.organization}
           </span>
-          <span className="inline-block bg-teal-100 text-teal-800 text-[1.0rem] font-medium px-2.5 py-0.5 dark:bg-teal-900/70 dark:text-teal-300">
+          <span className="inline-block bg-teal-100 text-teal-800 text-[1.0rem] font-medium px-2.5 py-0.5 rounded-none dark:bg-teal-900/70 dark:text-teal-300">
             {certification.domain}
           </span>
         </div>

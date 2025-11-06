@@ -4,29 +4,59 @@ import { Certification } from './types';
 export const CERTIFICATIONS: Certification[] = [
   {
     id: 1,
-    title: 'Certified Solutions Architect - Professional and Advanced Networking - Specialty',
+    title: 'Certified Solutions Architect - Professional & Advanced Networking - Specialty',
     domain: 'Cloud & Network Architecture',
     organization: 'Amazon Web Services (AWS)',
     content: [
       {
-        id: 'overview',
-        title: 'Overview',
-        content: 'Validates advanced technical skills and experience in designing distributed applications and systems on the AWS platform. This certification is for individuals who perform a solutions architect role with two or more years of hands-on experience managing and operating systems on AWS.',
+        id: 'csp-overview',
+        title: 'Solutions Architect - Professional: Overview',
+        content: `The AWS Certified Solutions Architect - Professional (SAP-C02) exam is intended for individuals who perform a solutions architect role with two or more years of hands-on experience managing and operating systems on AWS.
+
+This certification validates a candidate's ability to:
+• Design and deploy dynamically scalable, highly available, fault-tolerant, and reliable applications.
+• Select appropriate AWS services to design and deploy an application based on given requirements.
+• Migrate complex, multi-tier applications on AWS.
+• Implement cost-control strategies.`
       },
       {
-        id: 'key-domains',
-        title: 'Key Domains',
-        content: 'Covers complex topics such as designing for new business requirements, continuous improvement for existing solutions, accelerated workload migration, and ensuring security and reliability.',
+        id: 'csp-domains',
+        title: 'Solutions Architect - Professional: Key Domains',
+        content: `The exam covers four main domains:
+1.  **Design Solutions for Organizational Complexity:** 26%
+2.  **Design for New Solutions:** 29%
+3.  **Continuously Improve Existing Solutions:** 25%
+4.  **Accelerate Workload Migration and Modernization:** 20%`
       },
       {
-        id: 'exam-format',
-        title: 'Exam Format',
-        content: 'The exam is a multiple-choice, multiple-response test that challenges your ability to solve complex problems and design solutions using architectural best practices.',
+        id: 'an-overview',
+        title: 'Advanced Networking - Specialty: Overview',
+        content: `The AWS Certified Advanced Networking - Specialty (ANS-C01) certification is intended for individuals who perform a networking role and have five years of hands-on experience with networking.
+
+It validates a candidate's ability to:
+• Design and develop hybrid and cloud-native networking architectures at scale.
+• Implement and manage core AWS networking services.
+• Leverage automation to streamline network deployment and operations.
+• Secure and monitor AWS networks for performance and compliance.`
+      },
+      {
+        id: 'an-domains',
+        title: 'Advanced Networking - Specialty: Key Domains',
+        content: `This exam covers five main domains:
+1.  **Network Design:** 30%
+2.  **Network Implementation:** 26%
+3.  **Network Management and Operation:** 20%
+4.  **Network Security, Compliance, and Governance:** 24%`
       },
        {
-        id: 'advanced-networking',
-        title: 'Advanced Networking',
-        content: 'The Advanced Networking specialty validates expertise in designing and implementing AWS and hybrid IT network architectures at scale. Topics include Direct Connect, VPN, VPC, and routing.',
+        id: 'exam-format',
+        title: 'Exam Format & Details (for both)',
+        content: `Both certifications follow a similar format:
+• **Format:** Multiple choice, multiple response questions.
+• **Length:** 170-180 minutes.
+• **Number of Questions:** 65-75 questions.
+• **Cost:** 300 USD each.
+• **Prerequisites:** AWS recommends holding an associate-level certification (e.g., Solutions Architect - Associate) before attempting the professional or specialty exams.`
       }
     ],
   },
