@@ -6,8 +6,6 @@ import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import TableOfContents from './components/TableOfContents';
 
-declare const feather: any;
-
 const App: React.FC = () => {
   const [selectedCertification, setSelectedCertification] = useState<Certification | null>(CERTIFICATIONS[0] ?? null);
   const [activeTocId, setActiveTocId] = useState<string | null>(null);
@@ -28,25 +26,6 @@ const App: React.FC = () => {
     }
     localStorage.setItem('theme', theme);
   }, [theme]);
-
-  useEffect(() => {
-    // Feather icons need to be re-initialized on initial load and when the theme changes.
-    // A small timeout ensures React has finished its DOM updates.
-    const timer = setTimeout(() => {
-        try {
-            if (typeof feather !== 'undefined' && feather) {
-                feather.replace({
-                  width: '1.4rem',
-                  height: '1.4rem'
-                });
-            }
-        } catch (e) {
-            console.error('Feather icons could not be replaced.', e);
-        }
-    }, 1);
-    
-    return () => clearTimeout(timer);
-  }, [theme]); // Only re-run when theme changes
 
   const toggleTheme = () => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');

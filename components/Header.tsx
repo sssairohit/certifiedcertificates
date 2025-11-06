@@ -1,5 +1,7 @@
 import React from 'react';
 
+declare const feather: any;
+
 interface HeaderProps {
   globalSearchTerm: string;
   onGlobalSearchChange: (term: string) => void;
@@ -8,6 +10,11 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ globalSearchTerm, onGlobalSearchChange, theme, toggleTheme }) => {
+  const iconName = theme === 'light' ? 'moon' : 'sun';
+  const svgHTML = (typeof feather !== 'undefined' && feather.icons[iconName])
+    ? { __html: feather.icons[iconName].toSvg({ class: 'w-5 h-5' }) }
+    : { __html: '' };
+
   return (
     <header className="bg-white border-b border-gray-200 dark:bg-gray-950 dark:border-gray-800">
       <div className="w-full mx-auto">
@@ -19,11 +26,7 @@ const Header: React.FC<HeaderProps> = ({ globalSearchTerm, onGlobalSearchChange,
               aria-label="Toggle theme"
               className="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-950"
             >
-              {theme === 'light' ? (
-                <i data-feather="moon" className="w-5 h-5"></i>
-              ) : (
-                <i data-feather="sun" className="w-5 h-5"></i>
-              )}
+              <span dangerouslySetInnerHTML={svgHTML} />
             </button>
           </div>
           
