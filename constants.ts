@@ -1,4 +1,3 @@
-
 import { Certification } from './types';
 
 export const CERTIFICATIONS: Certification[] = [
@@ -14,10 +13,10 @@ export const CERTIFICATIONS: Certification[] = [
         content: `The AWS Certified Solutions Architect - Professional (SAP-C02) exam is intended for individuals who perform a solutions architect role with two or more years of hands-on experience managing and operating systems on AWS.
 
 This certification validates a candidate's ability to:
-• Design and deploy dynamically scalable, highly available, fault-tolerant, and reliable applications.
-• Select appropriate AWS services to design and deploy an application based on given requirements.
-• Migrate complex, multi-tier applications on AWS.
-• Implement cost-control strategies.`
+- Design and deploy dynamically scalable, highly available, fault-tolerant, and reliable applications.
+- Select appropriate AWS services to design and deploy an application based on given requirements.
+- Migrate complex, multi-tier applications on AWS.
+- Implement cost-control strategies.`
       },
       {
         id: 'csp-domains',
@@ -34,10 +33,10 @@ This certification validates a candidate's ability to:
         content: `The AWS Certified Advanced Networking - Specialty (ANS-C01) certification is intended for individuals who perform a networking role and have five years of hands-on experience with networking.
 
 It validates a candidate's ability to:
-• Design and develop hybrid and cloud-native networking architectures at scale.
-• Implement and manage core AWS networking services.
-• Leverage automation to streamline network deployment and operations.
-• Secure and monitor AWS networks for performance and compliance.`
+- Design and develop hybrid and cloud-native networking architectures at scale.
+- Implement and manage core AWS networking services.
+- Leverage automation to streamline network deployment and operations.
+- Secure and monitor AWS networks for performance and compliance.`
       },
       {
         id: 'an-domains',
@@ -54,21 +53,21 @@ It validates a candidate's ability to:
         content: `This chapter establishes the foundational knowledge required for both Solutions Architect Professional and Advanced Networking paths. A deep understanding of these core concepts is critical for designing and managing scalable, secure, and resilient solutions on AWS.
 
 **Key Topics Covered:**
-• **AWS Well-Architected Framework:** Understanding the five pillars (Operational Excellence, Security, Reliability, Performance Efficiency, and Cost Optimization) is non-negotiable. This framework provides the blueprint for evaluating architectures and implementing designs that will scale over time.
-• **Identity and Access Management (IAM):** We will delve into advanced IAM topics, including roles, policies, cross-account access, and federated identity management. Securely controlling access to AWS resources is the bedrock of any secure cloud environment.
-• **Virtual Private Cloud (VPC):** Moving beyond the basics, this section will cover complex VPC architectures, including multi-VPC designs, transit gateways, VPC endpoints (Gateway and Interface), and network access control lists (NACLs) vs. security groups.
-• **Elastic Compute Cloud (EC2):** We will explore advanced EC2 concepts such as placement groups, instance types optimization, Spot Instances for cost savings, and Auto Scaling for high availability and dynamic scaling.
-• **Simple Storage Service (S3):** This section covers advanced S3 features, including storage classes (e.g., Intelligent-Tiering, Glacier Deep Archive), lifecycle policies, replication for disaster recovery, and securing data with bucket policies and access points.`
+*   **AWS Well-Architected Framework:** Understanding the five pillars (Operational Excellence, Security, Reliability, Performance Efficiency, and Cost Optimization) is non-negotiable. This framework provides the blueprint for evaluating architectures and implementing designs that will scale over time.
+*   **Identity and Access Management (IAM):** We will delve into advanced IAM topics, including roles, policies, cross-account access, and federated identity management. Securely controlling access to AWS resources is the bedrock of any secure cloud environment.
+*   **Virtual Private Cloud (VPC):** Moving beyond the basics, this section will cover complex VPC architectures, including multi-VPC designs, transit gateways, VPC endpoints (Gateway and Interface), and network access control lists (NACLs) vs. security groups.
+*   **Elastic Compute Cloud (EC2):** We will explore advanced EC2 concepts such as placement groups, instance types optimization, Spot Instances for cost savings, and Auto Scaling for high availability and dynamic scaling.
+*   **Simple Storage Service (S3):** This section covers advanced S3 features, including storage classes (e.g., Intelligent-Tiering, Glacier Deep Archive), lifecycle policies, replication for disaster recovery, and securing data with bucket policies and access points.`
       },
        {
         id: 'exam-format',
         title: 'Exam Format & Details (for both)',
         content: `Both certifications follow a similar format:
-• **Format:** Multiple choice, multiple response questions.
-• **Length:** 170-180 minutes.
-• **Number of Questions:** 65-75 questions.
-• **Cost:** 300 USD each.
-• **Prerequisites:** AWS recommends holding an associate-level certification (e.g., Solutions Architect - Associate) before attempting the professional or specialty exams.`
+- **Format:** Multiple choice, multiple response questions.
+- **Length:** 170-180 minutes.
+- **Number of Questions:** 65-75 questions.
+- **Cost:** 300 USD each.
+- **Prerequisites:** AWS recommends holding an associate-level certification (e.g., Solutions Architect - Associate) before attempting the professional or specialty exams.`
       }
     ],
   },

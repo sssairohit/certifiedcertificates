@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import ReactMarkdown from 'https://esm.sh/react-markdown@9';
 import { Certification } from '../types';
 
 interface MainContentProps {
@@ -73,9 +74,13 @@ const MainContent: React.FC<MainContentProps> = ({ certification, onTocEntryInVi
               >
                 {section.title}
               </h2>
-              <p className="text-gray-600 text-[1.0rem] leading-relaxed whitespace-pre-line dark:text-gray-400">
-                {section.content}
-              </p>
+              <div className="prose prose-lg max-w-none text-gray-600 dark:prose-invert dark:text-gray-400 
+                              prose-headings:font-semibold prose-headings:text-gray-800 dark:prose-headings:text-gray-200
+                              prose-strong:text-gray-700 dark:prose-strong:text-gray-300
+                              prose-ul:list-disc prose-ul:pl-6 prose-li:my-1
+                              dark:prose-a:text-indigo-400 prose-a:text-indigo-600 hover:prose-a:underline">
+                <ReactMarkdown>{section.content}</ReactMarkdown>
+              </div>
             </section>
           ))}
         </div>
