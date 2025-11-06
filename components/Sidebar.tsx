@@ -48,31 +48,34 @@ const Sidebar: React.FC<SidebarProps> = ({ groupedCertifications, selectedCertif
     }
   };
 
-  const baseButtonClass = "relative inline-flex items-center justify-center px-4 py-2 text-[1.0rem] font-medium focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-150";
-  const activeButtonClass = "bg-indigo-600 text-white";
-  const inactiveButtonClass = "bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700";
-
   return (
     <aside className="w-64 lg:w-[292px] bg-gray-50 border-r border-gray-200 flex-shrink-0 overflow-y-auto dark:bg-gray-950 dark:border-gray-800">
       <div className="p-4">
         <div className="mb-4">
-          <span className="text-[1.0rem] font-medium text-gray-600 dark:text-gray-400 block mb-2">Group by:</span>
-          <div className="flex rounded-md shadow-sm w-full">
-            <button
-              type="button"
-              onClick={() => setGroupBy('organization')}
-              className={`${baseButtonClass} rounded-l-md border border-gray-300 dark:border-gray-600 w-1/2 ${groupBy === 'organization' ? activeButtonClass : inactiveButtonClass}`}
-            >
-              Organization
-            </button>
-            <button
-              type="button"
-              onClick={() => setGroupBy('domain')}
-              className={`${baseButtonClass} -ml-px rounded-r-md border border-gray-300 dark:border-gray-600 w-1/2 ${groupBy === 'domain' ? activeButtonClass : inactiveButtonClass}`}
-            >
-              Domain
-            </button>
-          </div>
+            <div className="flex items-center space-x-2">
+              <span className="text-[1.0rem] font-medium text-gray-600 dark:text-gray-400">Group by:</span>
+              <button
+                onClick={() => setGroupBy('organization')}
+                className={`text-[1.0rem] font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-950 rounded-sm ${
+                  groupBy === 'organization'
+                    ? 'text-indigo-600 dark:text-indigo-400 underline'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline'
+                }`}
+              >
+                Organization
+              </button>
+              <span className="text-gray-300 dark:text-gray-600 select-none">•</span>
+              <button
+                onClick={() => setGroupBy('domain')}
+                className={`text-[1.0rem] font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-950 rounded-sm ${
+                  groupBy === 'domain'
+                    ? 'text-indigo-600 dark:text-indigo-400 underline'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline'
+                }`}
+              >
+                Domain
+              </button>
+            </div>
         </div>
         
         {groupKeys.length > 0 && (
