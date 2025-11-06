@@ -13,6 +13,17 @@ const App: React.FC = () => {
   const [groupBy, setGroupBy] = useState<GroupByOption>('organization');
   const [searchTerm, setSearchTerm] = useState('');
   const [globalSearchTerm, setGlobalSearchTerm] = useState('');
+  const [bookmarkedIds, setBookmarkedIds] = useState<Set<number>>(() => {
+    try {
+      const savedBookmarks = localStorage.getItem('bookmarkedCertifications');
+      return savedBookmarks ? new Set(JSON.parse(savedBookmarks)) : new Set();
+    } catch (error) {
+      console.error("Failed to parse bookmarks from localStorage", error);
+      return new Set();
+    }
+  });
+  const [showOnlyBookmarked, setShowOnlyBookmarked] = useState(false);
+
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const savedTheme = localStorage.getItem('theme');
     const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -32,6 +43,22 @@ const App: React.FC = () => {
     }
   }, [theme]);
 
+  useEffect(() => {
+    localStorage.setItem('bookmarkedCertifications', JSON.stringify(Array.from(bookmarkedIds)));
+  }, [bookmarkedIds]);
+  
+  const toggleBookmark = (certId: number) => {
+    setBookmarkedIds(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(certId)) {
+        newSet.delete(certId);
+      } else {
+        newSet.add(certId);
+      }
+      return newSet;
+    });
+  };
+
   const toggleTheme = () => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
@@ -46,15 +73,22 @@ const App: React.FC = () => {
   };
   
   const filteredCertifications = useMemo(() => {
-    if (!searchTerm.trim()) {
-      return CERTIFICATIONS;
+    let certs = CERTIFICATIONS;
+    
+    if (showOnlyBookmarked) {
+      certs = certs.filter(cert => bookmarkedIds.has(cert.id));
     }
-    return CERTIFICATIONS.filter(cert => 
+
+    if (!searchTerm.trim()) {
+      return certs;
+    }
+
+    return certs.filter(cert => 
       cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       cert.organization.toLowerCase().includes(searchTerm.toLowerCase()) ||
       cert.domain.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }, [searchTerm]);
+  }, [searchTerm, showOnlyBookmarked, bookmarkedIds]);
 
   const groupedCertifications = useMemo(() => {
     return filteredCertifications.reduce((acc, cert) => {
@@ -69,7 +103,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (selectedCertification && !filteredCertifications.some(c => c.id === selectedCertification.id)) {
-      setSelectedCertification(null);
+      setSelectedCertification(filteredCertifications[0] ?? null);
     }
   }, [filteredCertifications, selectedCertification]);
 
@@ -95,6 +129,10 @@ const App: React.FC = () => {
           onSelectCertification={handleSelectCertification}
           groupBy={groupBy}
           setGroupBy={setGroupBy}
+          bookmarkedIds={bookmarkedIds}
+          onToggleBookmark={toggleBookmark}
+          showOnlyBookmarked={showOnlyBookmarked}
+          onShowOnlyBookmarkedChange={setShowOnlyBookmarked}
         />
         <main className="flex-1 overflow-y-auto bg-gray-100 dark:bg-gray-900">
             <MainContent 
