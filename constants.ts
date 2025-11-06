@@ -48,6 +48,18 @@ It validates a candidate's ability to:
 3.  **Network Management and Operation:** 20%
 4.  **Network Security, Compliance, and Governance:** 24%`
       },
+      {
+        id: 'chapter-1-foundations',
+        title: 'Chapter 1: Foundational AWS Concepts & Core Services',
+        content: `This chapter establishes the foundational knowledge required for both Solutions Architect Professional and Advanced Networking paths. A deep understanding of these core concepts is critical for designing and managing scalable, secure, and resilient solutions on AWS.
+
+**Key Topics Covered:**
+• **AWS Well-Architected Framework:** Understanding the five pillars (Operational Excellence, Security, Reliability, Performance Efficiency, and Cost Optimization) is non-negotiable. This framework provides the blueprint for evaluating architectures and implementing designs that will scale over time.
+• **Identity and Access Management (IAM):** We will delve into advanced IAM topics, including roles, policies, cross-account access, and federated identity management. Securely controlling access to AWS resources is the bedrock of any secure cloud environment.
+• **Virtual Private Cloud (VPC):** Moving beyond the basics, this section will cover complex VPC architectures, including multi-VPC designs, transit gateways, VPC endpoints (Gateway and Interface), and network access control lists (NACLs) vs. security groups.
+• **Elastic Compute Cloud (EC2):** We will explore advanced EC2 concepts such as placement groups, instance types optimization, Spot Instances for cost savings, and Auto Scaling for high availability and dynamic scaling.
+• **Simple Storage Service (S3):** This section covers advanced S3 features, including storage classes (e.g., Intelligent-Tiering, Glacier Deep Archive), lifecycle policies, replication for disaster recovery, and securing data with bucket policies and access points.`
+      },
        {
         id: 'exam-format',
         title: 'Exam Format & Details (for both)',
