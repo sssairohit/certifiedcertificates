@@ -26,6 +26,10 @@ const App: React.FC = () => {
       document.documentElement.classList.remove('dark');
     }
     localStorage.setItem('theme', theme);
+    // After updating theme class, re-render feather icons
+    if ((window as any).feather) {
+      (window as any).feather.replace();
+    }
   }, [theme]);
 
   const toggleTheme = () => {

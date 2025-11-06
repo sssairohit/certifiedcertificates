@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface HeaderProps {
   globalSearchTerm: string;
@@ -8,13 +8,6 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ globalSearchTerm, onGlobalSearchChange, theme, toggleTheme }) => {
-  useEffect(() => {
-    // Re-initialize feather icons whenever the theme changes to render the new icon
-    if ((window as any).feather) {
-      (window as any).feather.replace();
-    }
-  }, [theme]);
-
   return (
     <header className="bg-white border-b border-gray-200 dark:bg-gray-950 dark:border-gray-800">
       <div className="w-full mx-auto">
