@@ -1,3 +1,4 @@
+export type GroupByOption = 'organization' | 'domain';
 
 export interface ContentSection {
   id: string;

@@ -1,30 +1,39 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { CERTIFICATIONS } from './constants';
-import { Certification } from './types';
+import { Certification, GroupByOption } from './types';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import TableOfContents from './components/TableOfContents';
 
-type GroupByOption = 'organization' | 'domain';
-
 const App: React.FC = () => {
   const [selectedCertification, setSelectedCertification] = useState<Certification | null>(CERTIFICATIONS[0] ?? null);
   const [activeTocId, setActiveTocId] = useState<string | null>(null);
   const [groupBy, setGroupBy] = useState<GroupByOption>('organization');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSelectCertification = (certification: Certification) => {
+  const handleSelectCertification = useCallback((certification: Certification) => {
     setSelectedCertification(certification);
     setActiveTocId(certification.content[0]?.id ?? null);
-    // The main content area will now scroll, we don't need manual scrolling logic here
-  };
+  }, []);
 
   const handleTocEntryInView = (id: string | null) => {
     setActiveTocId(id);
   };
   
+  const filteredCertifications = useMemo(() => {
+    if (!searchTerm.trim()) {
+      return CERTIFICATIONS;
+    }
+    return CERTIFICATIONS.filter(cert => 
+      cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      cert.organization.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      cert.domain.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [searchTerm]);
+
   const groupedCertifications = useMemo(() => {
-    return CERTIFICATIONS.reduce((acc, cert) => {
+    return filteredCertifications.reduce((acc, cert) => {
       const key = cert[groupBy];
       if (!acc[key]) {
         acc[key] = [];
@@ -32,28 +41,45 @@ const App: React.FC = () => {
       acc[key].push(cert);
       return acc;
     }, {} as Record<string, Certification[]>);
-  }, [groupBy]);
+  }, [groupBy, filteredCertifications]);
+
+  useEffect(() => {
+    if (selectedCertification && !filteredCertifications.some(c => c.id === selectedCertification.id)) {
+      setSelectedCertification(null);
+    }
+  }, [filteredCertifications, selectedCertification]);
+
+  useEffect(() => {
+    if (!selectedCertification && filteredCertifications.length > 0) {
+      handleSelectCertification(filteredCertifications[0]);
+    }
+  }, [selectedCertification, filteredCertifications, handleSelectCertification]);
+
 
   return (
-    <div className="flex h-screen bg-white">
-      <Sidebar
-        groupedCertifications={groupedCertifications}
-        selectedCertificationId={selectedCertification?.id ?? null}
-        onSelectCertification={handleSelectCertification}
-      />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <Header groupBy={groupBy} setGroupBy={setGroupBy} />
+    <div className="flex flex-col h-screen bg-white">
+      <Header />
+      <div className="flex flex-1 overflow-hidden">
+        <Sidebar
+          groupedCertifications={groupedCertifications}
+          selectedCertificationId={selectedCertification?.id ?? null}
+          onSelectCertification={handleSelectCertification}
+          groupBy={groupBy}
+          setGroupBy={setGroupBy}
+        />
         <main className="flex-1 overflow-y-auto bg-gray-100">
             <MainContent 
               certification={selectedCertification} 
               onTocEntryInView={handleTocEntryInView}
             />
         </main>
+        <TableOfContents 
+          certification={selectedCertification}
+          activeTocId={activeTocId}
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+        />
       </div>
-      <TableOfContents 
-        certification={selectedCertification}
-        activeTocId={activeTocId}
-      />
     </div>
   );
 };

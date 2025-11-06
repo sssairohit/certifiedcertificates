@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Certification } from '../types';
+import { Certification, GroupByOption } from '../types';
 
 interface SidebarProps {
   groupedCertifications: Record<string, Certification[]>;
   selectedCertificationId: number | null;
   onSelectCertification: (certification: Certification) => void;
+  groupBy: GroupByOption;
+  setGroupBy: (value: GroupByOption) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ groupedCertifications, selectedCertificationId, onSelectCertification }) => {
+const Sidebar: React.FC<SidebarProps> = ({ groupedCertifications, selectedCertificationId, onSelectCertification, groupBy, setGroupBy }) => {
   const [openGroups, setOpenGroups] = useState<Set<string>>(new Set());
 
   const groupKeys = useMemo(() => Object.keys(groupedCertifications), [groupedCertifications]);
@@ -48,11 +50,35 @@ const Sidebar: React.FC<SidebarProps> = ({ groupedCertifications, selectedCertif
     }
   };
 
+  const baseButtonClass = "relative inline-flex items-center justify-center px-4 py-2 text-[1.2rem] font-medium focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-150";
+  const activeButtonClass = "bg-indigo-600 text-white";
+  const inactiveButtonClass = "bg-white text-gray-700 hover:bg-gray-50";
+
   return (
     <aside className="w-64 md:w-80 bg-gray-50 border-r border-gray-200 flex-shrink-0 overflow-y-auto">
       <div className="p-4">
+        <div className="mb-4">
+          <span className="text-[1.2rem] font-medium text-gray-600 block mb-2">Group by:</span>
+          <div className="flex rounded-md shadow-sm w-full">
+            <button
+              type="button"
+              onClick={() => setGroupBy('organization')}
+              className={`${baseButtonClass} rounded-l-md border border-gray-300 w-1/2 ${groupBy === 'organization' ? activeButtonClass : inactiveButtonClass}`}
+            >
+              Organization
+            </button>
+            <button
+              type="button"
+              onClick={() => setGroupBy('domain')}
+              className={`${baseButtonClass} -ml-px rounded-r-md border border-gray-300 w-1/2 ${groupBy === 'domain' ? activeButtonClass : inactiveButtonClass}`}
+            >
+              Domain
+            </button>
+          </div>
+        </div>
+        
         {groupKeys.length > 0 && (
-          <div className="mb-4">
+          <div className="mb-4 border-t pt-4">
             <button
               onClick={toggleAllGroups}
               className="w-full text-left px-2 py-1.5 rounded-md text-[1.0rem] font-semibold text-indigo-600 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
