@@ -10,7 +10,7 @@ interface TableOfContentsProps {
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({ certification, activeTocId, searchTerm, onSearchChange }) => {
   return (
-    <aside className="hidden lg:block w-56 xl:w-64 bg-gray-50 border-l border-gray-200 p-4 overflow-y-auto">
+    <aside className="hidden lg:block w-[324px] bg-gray-50 border-l border-gray-200 p-4 overflow-y-auto">
       <div className="mb-4">
         <label htmlFor="search-certs" className="sr-only">Search certifications</label>
         <div className="relative">
@@ -26,7 +26,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ certification, active
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
             className="block w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 text-[1.2rem]"
-            placeholder="Search certifications..."
+            placeholder="Search Contents"
           />
         </div>
       </div>

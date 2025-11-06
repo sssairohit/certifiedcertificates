@@ -55,7 +55,7 @@ const Sidebar: React.FC<SidebarProps> = ({ groupedCertifications, selectedCertif
   const inactiveButtonClass = "bg-white text-gray-700 hover:bg-gray-50";
 
   return (
-    <aside className="w-64 md:w-80 bg-gray-50 border-r border-gray-200 flex-shrink-0 overflow-y-auto">
+    <aside className="w-72 lg:w-[324px] bg-gray-50 border-r border-gray-200 flex-shrink-0 overflow-y-auto">
       <div className="p-4">
         <div className="mb-4">
           <span className="text-[1.2rem] font-medium text-gray-600 block mb-2">Group by:</span>

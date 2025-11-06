@@ -11,6 +11,7 @@ const App: React.FC = () => {
   const [activeTocId, setActiveTocId] = useState<string | null>(null);
   const [groupBy, setGroupBy] = useState<GroupByOption>('organization');
   const [searchTerm, setSearchTerm] = useState('');
+  const [globalSearchTerm, setGlobalSearchTerm] = useState('');
 
   const handleSelectCertification = useCallback((certification: Certification) => {
     setSelectedCertification(certification);
@@ -58,7 +59,10 @@ const App: React.FC = () => {
 
   return (
     <div className="flex flex-col h-screen bg-white">
-      <Header />
+      <Header 
+        globalSearchTerm={globalSearchTerm}
+        onGlobalSearchChange={setGlobalSearchTerm}
+      />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar
           groupedCertifications={groupedCertifications}

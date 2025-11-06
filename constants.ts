@@ -5,7 +5,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     id: 1,
     title: 'Certified Solutions Architect - Professional and Advanced Networking - Specialty',
-    domain: 'Cloud Architecture & Networking',
+    domain: 'Cloud & Network Architecture',
     organization: 'Amazon Web Services (AWS)',
     content: [
       {
@@ -33,7 +33,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     id: 2,
     title: 'Advanced Security Practitioner (CASP+)',
-    domain: 'Cybersecurity (Vendor-Neutral)',
+    domain: 'Cybersecurity',
     organization: 'CompTIA',
     content: [
        {
@@ -56,7 +56,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     id: 3,
     title: 'Certified Internetwork Expert (CCIE) / Certified Design Expert (CCDE)',
-    domain: 'Networking/Architecture',
+    domain: 'Cloud & Network Architecture',
     organization: 'Cisco',
     content: [
       {
@@ -143,7 +143,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     id: 7,
     title: 'Certified Information Systems Security Professional (CISSP)',
-    domain: 'Cybersecurity (Vendor-Neutral)',
+    domain: 'Cybersecurity',
     organization: '(ISC)²',
     content: [
       {
@@ -161,7 +161,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     id: 8,
     title: 'Offensive Security Certified Professional (OSCP)',
-    domain: 'Penetration Testing',
+    domain: 'Cybersecurity',
     organization: 'Offensive Security',
     content: [
       {
@@ -184,7 +184,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     id: 9,
     title: 'Azure Solutions Architect Expert (AZ-305) and Cybersecurity Architect Expert (SC-100)',
-    domain: 'Cloud Architecture',
+    domain: 'Cloud & Network Architecture',
     organization: 'Microsoft Azure',
     content: [
       {
@@ -207,7 +207,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     id: 10,
     title: 'Professional Cloud Architect (PCA)',
-    domain: 'Cloud Architecture',
+    domain: 'Cloud & Network Architecture',
     organization: 'Google Cloud Platform (GCP)',
     content: [
       {
