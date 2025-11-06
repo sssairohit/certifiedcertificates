@@ -8,7 +8,8 @@ const Footer: React.FC = () => {
           href="https://linkedin.com/in/sssairohit" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="hover:underline font-medium text-gray-700 dark:text-gray-300"
+          aria-label="Sai Rohit's LinkedIn profile (opens in a new tab)"
+          className="hover:underline font-medium text-gray-700 dark:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-gray-950 rounded-sm"
         >
           Sai Rohit
         </a>
